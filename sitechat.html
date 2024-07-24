@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>YouTube Shorts Grid</title>
+    <link rel="stylesheet" href="styles.css"> <!-- Assuming you move your styles to a separate CSS file -->
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400&display=swap');
+
+        body {
+            background: #111;
+            color: #eee;
+            }
+.grid{
+margin: 0;
+            padding: 20px; /* Adding padding for spacing */
+            display: flex;
+            flex-wrap: wrap; /* Allows items to wrap to the next line */
+            justify-content: center; /* Centers items horizontally */
+        
+
+}
+*{
+margin:0;
+padding:0;
+font-family:poppins;
+
+}
+
+        .outer {
+            width: 300px; /* Width of each grid item */
+            margin: 60px; /* Margin between items */
+           
+            position: relative; /* Ensures vertical alignment works */
+        }
+
+        .outer img {
+            width :315px;
+            height: 560px;
+        }
+
+        .outer h1 {
+            position: absolute;
+            top: 10px; /* Adjust as needed */
+            left:-15%; /* Center horizontally */
+            transform: translateX(-50%);
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            color: #badc58;
+            font-weight: 300;
+            writing-mode: vertical-rl;
+            transform: rotate(180deg);
+        }
+
+        .outer h3, .outer p {
+            margin: 10px 0; /* Adding margin for spacing */
+        }
+		
+		.overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 315px;
+  height: 560px;
+  /*background-color: rgba(255, 255, 255, 0.5);*/ /* Transparent white */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+}
+
+.overlay img {
+  width: 150px; /* Adjust size of play button image as needed */
+  height: auto;
+}
+
+.overlay.clicked {
+  display: none; /* Hide the overlay after clicked */
+}
+    </style>
+</head>
+
+<body>
+
+<div style="
+    text-align: center;
+    top: 20px;
+    margin-top: 40px;
+    font-size: 40px;
+    font-family: fantasy;">Villa's For Sale.</div>
+
+<div class="grid">
+
+ <div class="outer">
+  
+        <h1>8000 SqFt  *  LONAVALA</h1>
+		
+        <div onclick="stopPreviousPlayer();playPauseVideo('player1'); this.nextElementSibling.style.display='block'; this.style.display='none';">
+         <img src="1.jpeg" width="315" height="560" style="cursor:pointer" />
+		  <div class="overlay" onclick="handlePlayClick()"><img src="play.png" alt="Play Button"></div>
+        </div>
+
+          <div style="display:none">
+
+ <div class="video-container">
+      <div id="player1"></div>
+	  <span id="TxR7FjlyLSo"></span>
+    </div>
+	</div>
+        
+   
+	<h2>90,000,000/-</h2>
+      
+	
+	</div>
+	
+	 <div class="outer">
+  
+        <h1>2200 SqFt  *  KHANDALA</h1>
+		
+        <div onclick="stopPreviousPlayer();playPauseVideo('player2'); this.nextElementSibling.style.display='block'; this.style.display='none';">
+         <img src="2.jpg" width="315" height="560" style="cursor:pointer" />
+		 <div class="overlay" onclick="handlePlayClick()"><img src="play.png" alt="Play Button"></div>
+        </div>
+
+          <div style="display:none">
+
+ <div class="video-container">
+      <div id="player2"></div>
+	  <span id="Cg7UMu-gcQ0"></span>
+    </div>
+	</div>
+        
+   
+	<h2>40,000,000/-</h2>
+        
+	
+	
+	</div>
+	
+	 <div class="outer">
+  
+        <h1>3500 SqFt *   PUNE</h1>
+		
+        <div onclick="stopPreviousPlayer();playPauseVideo('player3'); this.nextElementSibling.style.display='block'; this.style.display='none';">
+         <img src="3.jpg" width="315" height="560" style="cursor:pointer" />
+		 <div class="overlay" onclick="handlePlayClick()"><img src="play.png" alt="Play Button"></div>
+        </div>
+
+          <div style="display:none">
+
+ <div class="video-container">
+      <div id="player3"></div>
+	  <span id="t2ZRdX6JOzE"></span>
+    </div>
+	</div>
+        
+   
+	<h2>70,000,000/-</h2>
+
+	
+	
+	</div>
+	
+	<div class="outer">
+  
+        <h1>5500 SqFt  *  ANDHERI</h1>
+		
+        <div onclick="stopPreviousPlayer();playPauseVideo('player4'); this.nextElementSibling.style.display='block'; this.style.display='none';">
+         <img src="4.jpg" width="315" height="560" style="cursor:pointer" />
+		 <div class="overlay" onclick="handlePlayClick()"><img src="play.png" alt="Play Button"></div>
+        </div>
+
+          <div style="display:none">
+
+ <div class="video-container">
+      <div id="player4"></div>
+	  <span id="Ucza0P7KgTQ"></span>
+    </div>
+	</div>
+        
+   
+	<h3>150,000,000/-</h3>
+        <p>Another paragraph.</p>
+	
+	
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	
+	</div>
+	
+
+ <script>
+    var players = {}; // Object to store YouTube player instances
+    //var videoid='M7lc1UVf-VE';
+    // Function to play/pause a specific video
+    function playPauseVideo(playerId) {
+	
+	console.log(playerId);
+      if (players[playerId].getPlayerState() === YT.PlayerState.PLAYING) {
+        players[playerId].pauseVideo();
+      } else {
+        players[playerId].playVideo();
+      }
+	 
+     // document.getElementById(playerId + "Button").textContent = players[playerId].getPlayerState() === YT.PlayerState.PLAYING ? "Pause" : "Play";
+    }
+	
+	var outer = document.querySelectorAll(".outer");
+	
+	function stopPreviousPlayer() {
+	
+Object.values(players).forEach(play => {
+  if(play.getPlayerState() === YT.PlayerState.PLAYING){
+	play.pauseVideo();
+	showThumbnail();
+	  play.seekTo(0);
+	}
+	
+	if(play.getPlayerState() === YT.PlayerState.PAUSED){
+	console.log('paused');
+	showThumbnail();
+	play.seekTo(0);
+	}
+	
+	
+});
+
+
+	}
+	
+	function showThumbnail(){
+	for(var i=0;i<Object.keys(outer).length; i++){
+outer[i].children[1].style.display='block';
+outer[i].children[2].style.display='none';
+
+}
+	}
+	
+	function onPlayerStateChange(event) {
+    var playerID = event.target.getIframe().id;
+    var playerState = event.data;
+
+    // Determine which player triggered the state change
+   // console.log('Player', playerID, 'state changed to', playerState);
+
+    // Example: Handle pause event for a specific player
+    if (playerState === YT.PlayerState.PAUSED) {
+       // console.log('Player', playerID, 'paused');
+        // Perform actions specific to this player when paused
+		players[playerID].seekTo(0);
+		
+	
+		
+    }
+	}
+	
+	
+	
+	
+
+    // This code loads the IFrame Player API code asynchronously.
+    var tag = document.createElement('script');
+    tag.src = "https://www.youtube.com/iframe_api";
+    var firstScriptTag = document.getElementsByTagName('script')[0];
+    firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+
+    // This function creates YouTube players for each video element
+    function onYouTubeIframeAPIReady() {
+      var videoContainers = document.querySelectorAll(".video-container");
+	  console.log(videoContainers);
+      for (var i = 0; i < videoContainers.length; i++) {
+        var playerId = videoContainers[i].children[0].id;  // Get player ID from div
+		      //  var playerId = videoContainers[i].children[0].id;  // Get player ID from div
+		console.log(playerId);
+		
+        players[playerId] = new YT.Player(playerId, {
+          height: '560', // Adjust height as needed
+          width: '315',  // Adjust width as needed
+          videoId: videoContainers[i].children[1].id, // Replace with video ID for each player
+          playerVars: { 'playsinline': 1 },
+          events: { 'onReady': function(event) {
+            // Player is ready
+          }, 'onStateChange': onPlayerStateChange }
+        });
+		console.log(players);
+		console.log(videoContainers[i].children[1].id);
+        var button = videoContainers[i].children[1]; // Get button element
+		console.log(button);
+       // button.addEventListener("click", function() {playPauseVideo(playerId);});
+      }
+    }
+  </script>
+   
+
+</body>
+</html>
